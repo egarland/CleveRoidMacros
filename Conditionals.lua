@@ -43,6 +43,7 @@ end
 -- returns: Whether or not the given target can either be attacked or supported, depending on help
 function CleveRoids.CheckHelp(target, help)
     if help == nil then return true end
+    if target == nil then return false end
     if help then
         return UnitCanAssist("player", target)
     else

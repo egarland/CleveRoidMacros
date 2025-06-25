@@ -9,6 +9,30 @@ SLASH_PETATTACK1 = "/petattack"
 
 SlashCmdList.PETATTACK = function(msg) CleveRoids.DoPetAttack(msg); end
 
+SLASH_FEEDPET1 = "/feedpet"
+
+SlashCmdList.FEEDPET = function(msg) CleveRoids.FeedPet(msg); end
+
+SLASH_PETPASSIVE1 = "/petpassive"
+
+SlashCmdList.PETPASSIVE = function(msg) CleveRoids.DoSimpleAction(PetPassiveMode, msg); end
+
+SLASH_PETDEFENSIVE1 = "/petdefensive"
+
+SlashCmdList.PETDEFENSIVE = function(msg) CleveRoids.DoSimpleAction(PetDefensiveMode, msg); end
+
+SLASH_PETAGGRESSIVE1 = "/petaggressive"
+
+SlashCmdList.PETAGGRESSIVE = function(msg) CleveRoids.DoSimpleAction(PetAggressiveMode, msg); end
+
+SLASH_PETFOLLOW1 = "/petfollow"
+
+SlashCmdList.PETFOLLOW = function(msg) CleveRoids.DoSimpleAction(PetFollow, msg); end
+
+SLASH_PETWAIT1 = "/petwait"
+
+SlashCmdList.PETWAIT = function(msg) CleveRoids.DoSimpleAction(PetWait, msg); end
+
 SLASH_RELOAD1 = "/rl"
 
 SlashCmdList.RELOAD = function() ReloadUI(); end

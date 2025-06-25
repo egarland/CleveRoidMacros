@@ -788,6 +788,25 @@ function CleveRoids.DoPetAttack(msg)
     return handled
 end
 
+
+-- Attempts to call a function that has no arguments or target if conditionals are met
+-- msg: The raw conditionals string intercepted from a command
+function CleveRoids.DoSimpleAction(action, msg)
+
+    local handled = false
+    for k, v in pairs(CleveRoids.splitStringIgnoringQuotes(msg)) do
+        CleveRoids.Print("Conditional: ", v)
+        if CleveRoids.DoWithConditionals(v, action, CleveRoids.FixEmptyTarget, false, action) then
+            handled = true
+            break
+        end
+    end
+    if handled == nil then
+        action()
+    end
+    return handled
+end
+
 -- Attempts to use or equip an item from the player's inventory by a  set of conditionals
 -- Also checks if a condition is a spell so that you can mix item and spell use
 -- msg: The raw message intercepted from a /use or /equip command
@@ -825,6 +844,21 @@ function CleveRoids.DoUse(msg)
         if handled then break end
     end
     return handled
+end
+
+
+function CleveRoids.FeedPet(msg)
+    CleveRoids.DoCast("Feed Pet")
+    CleveRoids.PickupItem(msg)
+    ClearCursor()
+end
+
+function CleveRoids.PickupItem(msg) 
+    local item = CleveRoids.GetItem(msg)
+    if item.bagID then
+        CleveRoids.GetNextBagSlotForUse(item, msg)
+        PickupContainerItem(item.bagID, item.slot)
+    end
 end
 
 function CleveRoids.EquipBagItem(msg, offhand)
